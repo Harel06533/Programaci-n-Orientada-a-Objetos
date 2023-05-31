@@ -1,6 +1,6 @@
 package Semana2.Miercoles;
 
-import Semana2.Miercoles.Circle;
+import Semana2.Miercoles.Shapes2D.Circle;
 
 public class TestCircle {
   public static void main (String[] args) {
@@ -8,11 +8,10 @@ public class TestCircle {
     Circle c2 = new Circle(6.6);
     Circle c3 = new Circle(7.5);
 
-    String c1Data = c1.getInfo();
-    String c2Data = c2.getInfo();
-    String c3Data = c3.getInfo();
-
-    String output = String.format("Data from Circle 1\n%s\n\nData from Circle 2\n%s\n\n Data from Circle 3\n%s\n", c1Data, c2Data, c3Data);
+    String output = "";
+    Circle[] cArray = {c1, c2, c3};
+    for (int i = 0; i < cArray.length; i++)  
+      output += String.format("Data of Circle %d\n%s\n\n", i + 1, cArray[i].getInfo());
     System.out.println(output);
   }
 }

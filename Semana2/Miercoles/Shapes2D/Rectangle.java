@@ -2,9 +2,8 @@ package Semana2.Miercoles.Shapes2D;
 
 public class Rectangle {
 
-  private double DEFAULT_SIZE = 1;
-  private double base = DEFAULT_SIZE;
-  private double height = DEFAULT_SIZE;
+  private double base;
+  private double height;
 
   public Rectangle(double base, double height) {
     setBase(base);
@@ -30,9 +29,11 @@ public class Rectangle {
 
   /* SETTERS */
   public void setBase (double b) {
-    if (b < 0) 
-      return;
-    base = b;
+    base = (b > 0) ? (b) : 1;
+  }
+
+  public void setHeight (double h) {
+    height = (h > 0) ? (h) : 1;
   }
 
   public String getInfo () {
@@ -40,9 +41,4 @@ public class Rectangle {
     return output;
   }
 
-  public void setHeight (double h) {
-    if (h < 0) 
-      height = DEFAULT_SIZE;
-    height = h;
-  }
 }

@@ -1,19 +1,15 @@
 package Semana2.Miercoles.Shapes2D;
 
 public class RightTriangle {
-  private double adyacent = 1;;
-  private double oppose = 1;
+  private double adyacent;
+  private double oppose;
   private double hipotenuse;
 
   /* Constructor - Inicializa el cateto adyacente y opuesto y calcula la hipotenusa */
   public RightTriangle (double ad, double op) {
-    if (this.adyacent < 0 || this.oppose < 0) {
-      hipotenuse = calcHipotenuse(1, 1);
-      return;
-    }
-    adyacent = ad;
-    oppose = op;
-    hipotenuse = calcHipotenuse(ad, op);
+    adyacent = (ad > 0) ? (ad) : 1;
+    oppose = (op > 0) ? (op) : 1;
+    hipotenuse = calcHipotenuse(adyacent, oppose);
   }
 
   /* Métodos de cálculo */
@@ -40,21 +36,13 @@ public class RightTriangle {
 
   /* Setea un nuevo valor para el cateto adyacente - recalcula la hipotenusa */
   public void setAdyacent (double value) {
-    if (value < 0) {
-      hipotenuse = calcHipotenuse(1, 1);
-      return;
-    }
-    adyacent = value;
+    adyacent = (value > 0) ? (value) : 1;
     hipotenuse = calcHipotenuse(adyacent, oppose);
   }
 
   /* Setea un nuevo valor para el cateto opuesto - recalcula la hipotenusa */
   public void setOppose (double value) {
-    if (value < 0) {
-      hipotenuse = calcHipotenuse(1, 1);
-      return;
-    }
-    oppose = value;
+    oppose = (value > 0) ? (value) : 1;
     hipotenuse = calcHipotenuse(adyacent, oppose);
   }
 
@@ -92,6 +80,6 @@ public class RightTriangle {
     double sine = sineOfTriangle();
     double cos = cosineOfTriangle();
     double tan = tangentOfTriangle();
-    return (String.format("(Sine = %f, Cosine = %f, Tangen = %f)", sine, cos, tan));
+    return (String.format("(Sine = %f, Cosine = %f, Tangent = %f)", sine, cos, tan));
   }
 }

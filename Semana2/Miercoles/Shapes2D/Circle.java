@@ -1,7 +1,7 @@
 package Semana2.Miercoles.Shapes2D;
 
 public class Circle {
-  private double radius = 1;                      //--> Radio del Círculo (1 como número base) 
+  private double radius;                      //--> Radio del Círculo (1 como número base) 
   private double PI = Math.PI;                    //--> Constante Pi
 
   /* Constructor que inicializa el radio */
@@ -27,9 +27,7 @@ public class Circle {
   }
   // --SETTERS-- //
   /* Setea el valor del radio, si es < 0 lo evalúa a 1 */
-  public void setRadius (double radius) {
-    if (radius < 0) 
-      return;
-    this.radius = radius;
+  public void setRadius (double rad) {
+    radius = (rad > 0) ? (rad) : 1;
   }
 }

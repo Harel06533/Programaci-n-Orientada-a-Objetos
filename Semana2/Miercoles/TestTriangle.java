@@ -4,7 +4,7 @@ import Semana2.Miercoles.Shapes2D.RightTriangle;
 
 public class TestTriangle {
   public static void main (String[] args) {
-    RightTriangle t1 = new RightTriangle(1, 1);
+    RightTriangle t1 = new RightTriangle(-1, -100);
     RightTriangle t2 = new RightTriangle(4.5, 9);
     RightTriangle t3 = new RightTriangle(15, 8);
 

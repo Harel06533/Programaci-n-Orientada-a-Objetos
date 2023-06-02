@@ -1,21 +1,19 @@
 package Semana2.Jueves.Dates;
 
 public class Date {
-  private int day = 1;
-  private int month = 1;
-  private int year = 1970;
-  private String monthStr;
-  private String[] monthArray = {
+  private int day = 1;                            //--> Día actuál por default
+  private int month = 1;                          //--> Mes actuál por default
+  private int year = 1970;                        //--> Año actuál por default
+  private String[] monthArray = {                 //--> Arreglo de meses para un acceso rápido
     "January", "February", "March", 
     "April",  "May", "June", 
     "July", "August", "September",
     "October", "November", "December"
   };
+  private String monthStr =  monthArray[0];                        //--> Cadena del mes actual
 
   /* Constructor 1 - Fecha default */
-  public Date () {
-    monthStr = monthArray[0];
-  }
+  public Date () {}
 
   /* Constructor 2 - Parámeteros */
   public Date (int day, int month, int year) {
@@ -23,11 +21,38 @@ public class Date {
       this.day = day;
       this.month = month;
       this.year = year;
+      monthStr = mapMonth();
     }
-    monthStr = mapMonth();
   }
 
   /* Métodos públicos */
+
+  //-- Clona los contenidos de la clase actuál y la retorna --//
+  public Date clone () {
+    Date cloned = new Date(day, month, year);
+    return cloned;
+  }
+
+  /**
+   * Evalúa si los contenidos de {@code day}, {@code month} y {@code year} de un Objeto {@code Date} son iguales a los
+   * de otra instancia de la misma clase.
+   * @param date Instancia de {@code Date} a comparar
+   * @return {@code true} o {@code false} si son o no iguales.
+   */
+  public boolean equals (Date date) {
+    if (date instanceof Date) {
+      boolean equalDay = (this.getDay() == date.getDay());
+      boolean equalMonth = (this.getMonthNumber() == date.getMonthNumber());
+      boolean equalYear = (this.getYear() == date.getYear());
+      return (equalDay && equalMonth && equalYear);
+    }
+    return false;
+  }
+
+  //-- Método estático para obtener el tiempo actuál en milisegundos desde 1 de Enero de 1970 --//
+  public static long currentTimeStamp () {
+    return (System.currentTimeMillis() / 1000);
+  }
 
   // -- Retorna el máximo de días posibles en el mes (Si es bisiesto, febrero varía) -- // 
   public int maxMonthDays () {

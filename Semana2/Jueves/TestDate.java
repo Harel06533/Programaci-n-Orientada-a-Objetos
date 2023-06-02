@@ -8,13 +8,19 @@ public class TestDate {
     Date d2 = new Date(29, 02, 1600);
     Date d3 = new Date(11, 02, 1556);
     Date d4 = new Date(-1, 10, 2040);
+    Date d5 = d2.clone();
 
     System.out.println(d1);
     System.out.println(d2);
     System.out.println(d3);
     System.out.println(d4);
+    System.out.println(d5);
 
+    System.out.println(d2.equals(d5));
     d2.setYear(1601);
     System.out.println(d2);
+    System.out.println(d5);
+
+    System.out.println(Date.currentTimeStamp());
   }
 }

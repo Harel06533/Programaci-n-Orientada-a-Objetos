@@ -15,7 +15,7 @@ public class TestDateTime {
     time4.next();
 
     // Crea un Date que guarda únicamente los datos de fecha de time3 (Una instancia de DateTime)
-    Date date5 = DateTime.toDate(time3);
+    Date date5 = time3.toDate();
 
     // Clona los datos de date5 para poder sumarle 1 al día únicamente a la fecha
     Date date6 = date5.clone();

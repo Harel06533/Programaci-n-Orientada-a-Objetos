@@ -23,5 +23,10 @@ public class TestPerson {
 
     System.out.println(t);
     System.out.println(t.equals(t2));
+
+    p = t; //--> Es válido, ya que una super clase puede apuntar a una subclase (Puesto que la subclase tiene las mismas propiedades)
+    //t = p; //--> No es válido ya que Teacher es una subclase de Person y no puede apuntar a la clase padre puesto que no comparten lo mismo
+    //t = s; //--> Igual que el segundo caso
+
   }
 }

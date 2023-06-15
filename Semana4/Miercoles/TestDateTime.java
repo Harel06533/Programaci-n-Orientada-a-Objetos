@@ -37,6 +37,9 @@ public class TestDateTime {
     // Da true, puesto que un objeto DateTime es instancia de Date y Date.equals() únicamente requiere los atributos que ambos comparten, sin especialización
     System.out.println(date5.equals(time3));
 
+    // Da true, puesto que se crea una instancia de Date con los datos de time3, que son iguales a los datos de date5
+    System.out.println(date5.equals(time3.toDate()));
+
 
     System.out.println(time1);
     System.out.println(time2);

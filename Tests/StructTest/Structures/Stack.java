@@ -1,58 +1,69 @@
-package Tests.StructTest.Structures;
+package StructTest.Structures;
 
-public class Stack<Type> {
-  protected class Node { 
-    Type data;
-    Node next;
+public class Stack<T> {
+  // gets className
+  public final String className = "Stack"; 
 
-    public Node (Type data) {
+  // attributes
+  StackNode top;
+  int size;
+
+  // inner class that declares a single node for a stack (binary tree)
+  public class StackNode {
+    private StackNode next;
+    private T data;
+    public StackNode (T data) {
       this.data = data;
       next = null;
     }
   }
 
-  int size;
-  String output = "";
-  Type data;
-  Node top;
+  // initializes an empty stack
+  public Stack () {
+    top = null;
+    size = 0;
+  }
 
-  public Stack () { top = null; }
-
+  // overrides toString method
+  @Override
   public String toString () {
-    Node curr = top;
-    for (int i = 0; i < size; i++) {
-      output += curr.data + "\n";
-      output += "|" + "\n";
-      curr = curr.next;
+    String output = "";
+    StackNode current = top;
+    while (current != null) {
+      output += "| " + current.data + " |\n" ;
+      current = current.next;
     }
-    output += "NULL";
     return output;
   }
 
-  public void insert (Type data) {
-    Node toAdd = new Node(data);
-    toAdd.next = null;
-    if (top == null) {
-      top = toAdd;
-    } else {
-      toAdd.next = top;
-      top = toAdd;
-    }
+  // checks if stack is empty (head points to null)
+  public boolean isEmpty () {
+    return (top == null);
+  }
+
+  // checks if a node can be inserted in an empty stack, if so initializes the stack and returns true, otherwise returns false
+  private boolean canPushEmptyStack (StackNode node) {
+    if (!isEmpty()) return false;
+    top = node;
+    size++;
+    return true;
+
+  }
+
+  public void push (T data) {
+    StackNode node = new StackNode(data);
+    if (canPushEmptyStack(node)) return;
+    node.data = data;
+    node.next = top;
+    top = node;
     size++;
   }
 
-  public Type pop () {
-    Node toRemove = top;
+  public T pop () {
+    if (isEmpty()) return null;
+    StackNode toRemove = top;
+    T data = toRemove.data;
     top = top.next;
-    size--;
-    return toRemove.data;
-  }
-
-  public Type peek () {
-    return (top.data);
-  }
-
-  public int getSize () {
-    return (size);
+    return data;
   }
 }

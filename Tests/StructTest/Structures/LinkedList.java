@@ -1,97 +1,74 @@
-package Tests.StructTest.Structures;
+package StructTest.Structures;
 
-/**
- * Una Lista enlazada es una estructura de datos que permite el almacenamiento de datos de manera no contigua.
- * Esta forma permite que una lista enlazada sea una excelente herramienta para la inserción de elementos pero
- * no para la búsqueda y la obtención de los mismos.
- * @author Harel Alejandro Olguín Gaytán
- */
-public class LinkedList <T> {
-  /**
-   * La clase {@code Node} engloba los atributos y métodos de un Nodo individual para una clase
-   * {@code LinkedList}
-   */
-  private class Node {
+public class LinkedList<T> {
+  // gets className
+  public final String className = "LinkedList";
+
+  // attributes
+  private ListNode head;
+  private ListNode tail;
+  private int size;
+  private String stringOutput;
+
+  // inner class that declares a single node
+  public class ListNode {
     private T data;
-    public Node next;
+    private ListNode next;
 
-    /* Constructor */
-    public Node (T data) {
+    public ListNode (T data) {
       this.data = data;
-      this.next = null;
+      next = null;
     }
   }
 
-  private Node head;            //--> La cabeza de la lista
-  private Node tail;            //--> La cola de la lista
-  private int size;             //--> Tamaño de la lista
-
-  /**
-   * Constructor, crea una instancia de {@code LinkedList} donde el primer elemento {@code head} apunta a 
-   * {@code null}.
-   */
-  public LinkedList () { this.head = null; };
-  
-  /**
-   * Inserta un elemento de tipo indefinido {@code T} al final de la lista enlazada, si
-   * la cabeza de la lista apunta a {@code null}, entonces crea un elemento y tanto {@code head}
-   * como {@code tail} apuntarán a este.
-   * @param data Dato indefinido a insertar
-   */
-  public void insert (T data) {
-    Node newNode = new Node(data);
-    if (head == null) {
-      this.head = newNode;
-      this.tail = this.head;
-    } else {
-      this.tail.next = newNode;
-      this.tail = tail.next;
-    }
-    size++;
+  // initializes an empty linkedlist
+  public LinkedList () {
+    head = null;
+    tail = null;
+    stringOutput = "[";
+    size = 0;
   }
 
-  /**
-   * Inserta un elemento de tipo indefinido {@code T} en un índice definido de la lista enlazada.
-   * Si el índice es menor o mayor que el tamaño de la lista, finaliza.
-   * @param data Datos a agregar
-   * @param index Posición del dato a agregar
-   */
-  public void insert (T data, int index) {
-    Node newNode = new Node(data);
-    Node prevNode = this.head;
-
-    if (index > this.size || index < 0)
-      return;
-
-    if ((head == null)) {
-      this.head = newNode;
-      this.tail = this.head;
-    } else {
-      for (int i = 0; i < index - 1; i++) {
-        prevNode = prevNode.next;
-      }
-      newNode.next = prevNode.next;
-      prevNode.next = newNode;
-    }
-    size++;
-  }
-
-  /**
-   * 
-   * @return El tamaño de la lista
-   */
-  public int size() {
-    return (this.size);
-  }
-
+  // NOT VERY EFFICIENT (closes list format for printing)
+  @Override
   public String toString () {
-    String output = "[";
-    Node curr = this.head;
-    for (int i = 0; i < this.size; i++) {
-      output += (i + 1 == this.size) ? (curr.data) : (curr.data + ", ");
-      curr = curr.next;
-    }
-    output += "]";
-    return output;
+    return (stringOutput + "]");
   }
+
+  // checks if the list is empty (neither head nor tail point to a node)
+  public boolean isEmpty () {
+    return (head == null && tail == null);
+  }
+
+  // checks if it can initialize an empty list, if possible, initializes an return true, otherwise it returns false
+  private boolean canInitEmptyList (ListNode node) {
+    if (isEmpty()) {
+      head = node;
+      tail = node;
+      stringOutput += node.data;
+      size++;
+      return true;
+    }
+    return false;
+  }
+
+  // inserts (append) a node to the list, checks if the list has not yet been initialized, if so, initializes and returns, else just appends to the list
+  public void insert (T data) {
+    ListNode node = new ListNode(data);
+    if (canInitEmptyList(node)) return;
+    tail.next = node;
+    tail = node;
+    stringOutput += ", " + node.data;
+    size++;
+  }
+
+  // returns size of the list
+  public int getSize () {
+    return (size);
+  }
+
+  /* Unable to find a way to add to ToString correctly here 
+  public void insert (T data, int index) {1   
+  }
+  */
 }

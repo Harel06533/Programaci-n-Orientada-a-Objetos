@@ -47,9 +47,9 @@ public class Stack<T> {
     top = node;
     size++;
     return true;
-
   }
 
+  // adds a new node to the stack
   public void push (T data) {
     StackNode node = new StackNode(data);
     if (canPushEmptyStack(node)) return;
@@ -59,11 +59,18 @@ public class Stack<T> {
     size++;
   }
 
+  // deletes a node from the stack
   public T pop () {
     if (isEmpty()) return null;
     StackNode toRemove = top;
     T data = toRemove.data;
     top = top.next;
+    size--;
     return data;
+  }
+
+  // gets this stack size
+  public int getSize () {
+    return (size);
   }
 }

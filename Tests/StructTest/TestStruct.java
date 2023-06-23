@@ -10,7 +10,11 @@ public class TestStruct {
     for (int i = 0; i < 15; i++) {
       list.insert(i + 1);
     }
+    list.insert(777, 6);
     System.out.println("LinkedList:\n" + list);
+    list.reverse();
+    list.removeIndex(4);
+    System.out.println(list);;
 
     /* Stack */
     Stack<Integer>stack = new Stack<>(); 

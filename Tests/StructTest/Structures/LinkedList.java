@@ -25,14 +25,21 @@ public class LinkedList<T> {
   public LinkedList () {
     head = null;
     tail = null;
-    stringOutput = "[";
     size = 0;
   }
 
   // NOT VERY EFFICIENT (closes list format for printing)
   @Override
   public String toString () {
-    return (stringOutput + "]");
+    ListNode curr = head;
+    stringOutput = "[" + curr.data;
+    curr = curr.next;
+    while (curr != null) {
+      stringOutput += ", " + curr.data;
+      curr = curr.next;
+    }
+    stringOutput += "]";
+    return stringOutput;
   }
 
   // checks if the list is empty (neither head nor tail point to a node)
@@ -58,8 +65,22 @@ public class LinkedList<T> {
     if (canInitEmptyList(node)) return;
     tail.next = node;
     tail = node;
-    stringOutput += ", " + node.data;
     size++;
+  }
+
+  // reverses a linked list in case it's needed
+  public void reverse () {
+    if (isEmpty()) return;
+    ListNode prev = null;
+    ListNode curr = head;
+    ListNode next = curr;
+    while (curr != null) {
+      next = curr.next;
+      curr.next = prev;
+      prev = curr;
+      curr = next;
+    }
+    head = prev;
   }
 
   // returns size of the list
@@ -67,8 +88,32 @@ public class LinkedList<T> {
     return (size);
   }
 
-  /* Unable to find a way to add to ToString correctly here 
-  public void insert (T data, int index) {1   
+  // inserts a node based on an index input, if list is empy, initializes it, and if index is out of bounds, throws exception
+  public void insert (T data, int index) {   
+    ListNode node = new ListNode(data);
+    if (canInitEmptyList(node)) return;
+    if (index > size)
+      throw (new IndexOutOfBoundsException("The index is out of range for list with size = " + size));
+    ListNode prev = head;
+    ListNode curr = prev;
+    for (int i = 0; i < index - 1; i++) {
+      prev = prev.next;
+    }
+    curr = prev.next;
+    prev.next = node;
+    node.next = curr;
   }
-  */
+
+  // removes a node based on an index
+  public void removeIndex (int index) {
+    ListNode prevToRemove = head;
+    ListNode toRemove;
+    for (int i = 0; i < index - 1; i++) {
+      prevToRemove = prevToRemove.next;
+    }
+    toRemove = prevToRemove.next;
+    prevToRemove.next = toRemove.next;
+    toRemove = null;
+    System.gc();
+  }
 }

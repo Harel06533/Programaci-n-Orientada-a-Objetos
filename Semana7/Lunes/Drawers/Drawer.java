@@ -17,7 +17,7 @@ public class Drawer<T> {
     if (object != null) {
       if (object instanceof Drawer) {
         Drawer<?> drawer = (Drawer<?>)object;
-        output = "Object of " + drawer.peek().toString();
+        output = "Drawer contains a Drawer of " + drawer.peek().toString();
       } else {
         output = "Object of " + object.toString();
       }

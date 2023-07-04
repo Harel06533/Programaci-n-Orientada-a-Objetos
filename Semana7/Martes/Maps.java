@@ -10,11 +10,6 @@ public class Maps {
     numberMap.put("tres", 3);
     numberMap.put("cuatro", 4);
     numberMap.put("cinco", 5);
-    numberMap.put("seis", 6);
-    numberMap.put("siete", 7);
-    numberMap.put("ocho", 8);
-    numberMap.put("nueve", 9);
-    numberMap.put("diez", 10);
 
     System.out.println(numberMap.get("tres") + ", " + numberMap.get("siete"));
   } 

@@ -15,7 +15,7 @@ public class CompareTest {
       int randHeight = getRandomNumber(1, 100);
 
       rQueue.add(new Rectangle(randBase, randHeight));
-      rMap.put(i, new Rectangle(randBase, randHeight));
+      rMap.put(getRandomNumber(i, ((i + 5) * 2)), new Rectangle(randBase, randHeight));
       rSet.add(new Rectangle(randBase, randHeight));
     }
 
